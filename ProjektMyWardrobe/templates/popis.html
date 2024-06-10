@@ -1,0 +1,105 @@
+{% include 'navigation.html' %}
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>MyWardrobe - Popis odjeće</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Popis odjeće</h1>
+        <form method="POST" action="{{ url_for('popis') }}">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="category">Kategorija</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">Odaberi kategoriju...</option>
+                        {% for category in categories %}
+                        <option value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="color">Boja</label>
+                    <select id="color" name="color" class="form-control">
+                        <option value="">Odaberi boju...</option>
+                        {% for color in colors %}
+                        <option value="{{ color }}">{{ color }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="season">Sezona</label>
+                    <select id="season" name="season" class="form-control">
+                        <option value="">Odaberi sezonu...</option>
+                        {% for season in seasons %}
+                        <option value="{{ season }}">{{ season }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="brand">Brend</label>
+                    <select id="brand" name="brand" class="form-control">
+                        <option value="">Odaberi brend...</option>
+                        {% for brand in brands %}
+                        <option value="{{ brand }}">{{ brand }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="style">Stil</label>
+                    <select id="style" name="style" class="form-control">
+                        <option value="">Odaberi stil...</option>
+                        {% for style in styles %}
+                        <option value="{{ style }}">{{ style }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="size">Veličina</label>
+                    <select id="size" name="size" class="form-control">
+                        <option value="">Odaberi veličinu...</option>
+                        {% for size in sizes %}
+                        <option value="{{ size }}">{{ size }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-custom">Filtriraj</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kategorija</th>
+                    <th>Boja</th>
+                    <th>Veličina</th>
+                    <th>Sezona</th>
+                    <th>Brend</th>
+                    <th>Stil</th>
+                    <th>Akcije</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in garderoba %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.color }}</td>
+                    <td>{{ item.size }}</td>
+                    <td>{{ item.season }}</td>
+                    <td>{{ item.brand }}</td>
+                    <td>{{ item.style }}</td>
+                    <td>
+                        <a href="{{ url_for('uredi', id=item.id) }}" class="btn btn-custom">Uredi</a>
+                        <a href="{{ url_for('delete', id=item.id) }}" class="btn btn-danger">Obriši</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

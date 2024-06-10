@@ -1,0 +1,58 @@
+{% include 'navigation.html' %}
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>MyWardrobe - Vizualizacija</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Vizualizacija</h1>
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/odjevni_predmeti')
+                .then(response => response.json())
+                .then(data => {
+                    const kategorije = {};
+                    data.forEach(item => {
+                        if (kategorije[item.kategorija]) {
+                            kategorije[item.kategorija]++;
+                        } else {
+                            kategorije[item.kategorija] = 1;
+                        }
+                    });
+
+                    const labels = Object.keys(kategorije);
+                    const counts = Object.values(kategorije);
+
+                    const ctx = document.getElementById('myChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Broj kategorije odjeće',
+                                data: counts,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                });
+        });
+    </script>
+</body>
+</html>

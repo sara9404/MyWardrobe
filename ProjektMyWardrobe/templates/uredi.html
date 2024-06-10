@@ -1,0 +1,42 @@
+{% include 'navigation.html' %}
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <title>MyWardrobe - Uredi odjevni predmet</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Uredi odjevni predmet</h1>
+        <form method="POST" action="{{ url_for('uredi', id=item.id) }}">
+            <div class="form-group">
+                <label for="category">Kategorija</label>
+                <input type="text" id="category" name="category" value="{{ item.category }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="color">Boja</label>
+                <input type="text" id="color" name="color" value="{{ item.color }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="size">Veličina</label>
+                <input type="text" id="size" name="size" value="{{ item.size }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="season">Sezona</label>
+                <input type="text" id="season" name="season" value="{{ item.season }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="brand">Brend</label>
+                <input type="text" id="brand" name="brand" value="{{ item.brand }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="style">Stil</label>
+                <input type="text" id="style" name="style" value="{{ item.style }}" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Spremi</button>
+        </form>
+    </div>
+</body>
+</html>

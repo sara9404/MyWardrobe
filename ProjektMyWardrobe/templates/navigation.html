@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('home') }}">MyWardrobe</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">Početna</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('popis') }}">Popis odjeće</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('dodaj') }}">Dodaj odjevni predmet</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('vizualizacija') }}">Vizualizacija</a>
+            </li>
+        </ul>
+    </div>
+</nav>
