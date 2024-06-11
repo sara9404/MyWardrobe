@@ -85,14 +85,13 @@ form button:hover {
 
 .btn-custom {
     padding: 10px;
-    background-color: #e8c99f; /* Zelena boja */
-    color: white; /* Bijela boja teksta */
-    border: none; /* Uklanjanje granice */
+    background-color: #e8c99f; 
+    color: white;
+    border: none; 
     border-radius: 5px;
-    cursor: pointer; /* Promjena kursora prilikom prelaska preko gumba */
-    font-size: 1em; /* Veličina teksta */
+    cursor: pointer; 
+    font-size: 1em; 
 }
 
 .btn-custom:hover {
-    background-color: #c0a16b; /* Tamnija zelena boja */
-}
+    background-color: #c0a16b; 
